@@ -1,0 +1,19 @@
+{
+	"info": {
+		"_postman_id": "afd6776c-5dd3-48e3-9f4f-71e42fd7a018",
+		"name": "Task Manager Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49653779",
+		"_collection_link": "https://tanwarrampal2510-5915826.postman.co/workspace/rampal-tanwar's-Workspace~4c36afda-bae0-4571-8373-945d86457116/collection/49653779-afd6776c-5dd3-48e3-9f4f-71e42fd7a018?action=share&source=collection_link&creator=49653779"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
