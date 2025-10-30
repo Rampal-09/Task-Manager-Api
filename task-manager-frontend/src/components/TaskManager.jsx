@@ -16,9 +16,13 @@ const TaskManager = ({ onLogout }) => {
   const fetchTasks = async () => {
     try {
       const res = await getAllTasks();
-      setTasks(res.data);
-    } catch {
-      setMessage("Error fetching tasks");
+      setTasks(res.data || []);
+      setMessage(res.message || "Tasks fetched successfully");
+    } catch (err) {
+      console.error("Error fetching tasks:", err);
+
+      setTasks([]);
+      setMessage(err.response?.data?.message || "No tasks found");
     }
   };
 
@@ -42,14 +46,23 @@ const TaskManager = ({ onLogout }) => {
       setForm({ title: "", description: "" });
       setEditingTaskId(null);
       fetchTasks();
-    } catch {
-      setMessage("Error saving task");
+    } catch (err) {
+      console.error("Edit/Create error:", err);
+      setMessage(err.response?.data?.message || "Error saving task");
     }
   };
 
   const handleDelete = async (id) => {
-    await deleteTask(id);
-    fetchTasks();
+    try {
+      await deleteTask(id);
+
+      setTasks((prev) => prev.filter((task) => task._id !== id));
+
+      fetchTasks();
+      setMessage("Task deleted successfully");
+    } catch {
+      setMessage("Error deleting task");
+    }
   };
 
   const handleEdit = (task) => {
