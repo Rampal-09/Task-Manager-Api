@@ -66,6 +66,7 @@ exports.editTask = async (req, res, next) => {
   }
   try {
     const task = await Task.findById(taskId);
+    console.log("task from DB:", task);
 
     if (!task) {
       return res.status(404).json({
@@ -73,6 +74,7 @@ exports.editTask = async (req, res, next) => {
         message: "task not found",
       });
     }
+    console.log("req.user:", req.user);
     if (task.createBy.toString() !== req.user.id) {
       return res.status(403).json({
         success: false,
@@ -91,6 +93,7 @@ exports.editTask = async (req, res, next) => {
       data: task,
     });
   } catch (err) {
+    console.log(err);
     return res.status(500).json({
       success: false,
       type: "serverError",

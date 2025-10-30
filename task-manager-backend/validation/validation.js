@@ -23,9 +23,9 @@ exports.validateUser = () => [
       "Password must contain at least one lowercase letter, one uppercase letter, and one number"
     ),
 
-  check("role").isIn[("user", "admin")].withMessage(
-    "Role must be either user or admin"
-  ),
+  check("role")
+    .isIn(["user", "admin"])
+    .withMessage("Role must be either user or admin"),
 ];
 
 exports.validateLogin = () => [
